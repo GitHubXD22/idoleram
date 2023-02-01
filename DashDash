@@ -1,0 +1,31 @@
+offset = height * 15;
+		for i, v in pairs(mov) do
+			v.Position = Vector3.new(chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).X, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).Y, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).Z);
+		end
+	elseif mode == 11 then
+		for i, v in pairs(mov) do
+			v.Position = Vector3.new(chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(plr:GetMouse().Hit.p)).X, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(plr:GetMouse().Hit.p)).Y, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(plr:GetMouse().Hit.p)).Z) + Vector3.new(chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).X, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).Y, chr.HumanoidRootPart.CFrame:ToObjectSpace(CFrame.new(par[i].Position)).Z);
+		end
+	end
+	for _, v in pairs(mov2) do
+		v.AngularVelocity = angular;
+	end
+end)
+game.Players.LocalPlayer.Chatted:Connect(function(c)
+	if c:split(' ')[1] == '.orbit' then
+		for _, v in pairs(mov) do
+			chr = ftp(c:split(' ')[2])[1].Character;
+			v.Parent = ftp(c:split(' ')[2])[1].Character.HumanoidRootPart;
+		end
+	end
+	if c:split(' ')[1] == '.speed' then
+		speed = tonumber(c:split(' ')[2]);
+	end
+	if c:split(' ')[1] == '.mode' then
+		mode = tonumber(c:split(' ')[2]);
+	end
+	if c:split(' ')[1] == '.offset' then
+		offset = tonumber(c:split(' ')[2]);
+	end
+	if c:split(' ')[1] == '.angular' then
+		angular = Vector3.new(tonumber(c:split('
